@@ -1,0 +1,9 @@
+
+.vs/
+.vscode/
+Library/
+Temp/
+*.csproj
+*.sln
+
+saves/
