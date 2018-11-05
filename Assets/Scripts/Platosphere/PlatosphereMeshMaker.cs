@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class OctaNode : MonoBehaviour {
+public static class PlatosphereMeshMaker {
 
-    [SerializeField]
-    private MeshFilter meshFilter;
-    [SerializeField]
-    private MeshRenderer meshRenderer;
-
-
-
-	public void Build(Vector3[] corners, int divisions, float sphereRadius)
+	public static Mesh BuildMesh(Vector3[] corners, int divisions, float sphereRadius)
     {
         // rez is the number of vertices on one side of the mesh/triangle
         // the part in parentheses is called the "Mersenne Number"
@@ -41,9 +33,9 @@ public class OctaNode : MonoBehaviour {
 
         int vIdx = 0;
 
-        for(int i = 0; i < rez; ++i)
+        for (int i = 0; i < rez; ++i)
         {
-            for(int n = 0; n <= i; ++n)
+            for (int n = 0; n <= i; ++n)
             {
                 vertices[vIdx] = corners[0] + add1 * i + add2 * n;
                 Vector3 normal = (vertices[vIdx]).normalized;
@@ -59,7 +51,7 @@ public class OctaNode : MonoBehaviour {
         int rowStartIdx = 1;
         int prevRowStartIdx = 0;
 
-        for(int row = 0; row < rez - 1; ++row)
+        for (int row = 0; row < rez - 1; ++row)
         {
             bool upright = true;
             int trisInRow = 1 + row * 2;
@@ -68,20 +60,20 @@ public class OctaNode : MonoBehaviour {
             int upTri = 0;
             int downTri = 0;
 
-            for(int tri = 0; tri < trisInRow; ++tri)
+            for (int tri = 0; tri < trisInRow; ++tri)
             {
-                if(upright)
+                if (upright)
                 {
-                    indices[indIdx  ] = rowStartIdx + upTri + 1;
-                    indices[indIdx+1] = rowStartIdx + upTri;
-                    indices[indIdx+2] = prevRowStartIdx + upTri;
+                    indices[indIdx] = rowStartIdx + upTri + 1;
+                    indices[indIdx + 1] = rowStartIdx + upTri;
+                    indices[indIdx + 2] = prevRowStartIdx + upTri;
                     ++upTri;
                 }
                 else
                 {
-                    indices[indIdx  ] = prevRowStartIdx + downTri + 1;
-                    indices[indIdx+1] = rowStartIdx + downTri + 1;
-                    indices[indIdx+2] = prevRowStartIdx + downTri;
+                    indices[indIdx] = prevRowStartIdx + downTri + 1;
+                    indices[indIdx + 1] = rowStartIdx + downTri + 1;
+                    indices[indIdx + 2] = prevRowStartIdx + downTri;
                     ++downTri;
                 }
 
@@ -97,7 +89,7 @@ public class OctaNode : MonoBehaviour {
         mesh.vertices = vertices;
         mesh.triangles = indices;
         mesh.normals = normals;
-        meshFilter.mesh = mesh;
+        return mesh;
     }
 
 }
