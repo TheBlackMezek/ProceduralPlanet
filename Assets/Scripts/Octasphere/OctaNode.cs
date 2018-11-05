@@ -49,6 +49,44 @@ public class OctaNode : MonoBehaviour {
             }
         }
 
+        int indIdx = 0;
+        int rowStartIdx = 1;
+        int prevRowStartIdx = 0;
+
+        for(int row = 0; row < rez - 1; ++row)
+        {
+            bool upright = true;
+            int trisInRow = 1 + row * 2;
+            int vertsInRowBottom = row + 2;
+
+            int upTri = 0;
+            int downTri = 0;
+
+            for(int tri = 0; tri < trisInRow; ++tri)
+            {
+                if(upright)
+                {
+                    indices[indIdx  ] = rowStartIdx + upTri + 1;
+                    indices[indIdx+1] = rowStartIdx + upTri;
+                    indices[indIdx+2] = prevRowStartIdx + upTri;
+                    ++upTri;
+                }
+                else
+                {
+                    indices[indIdx  ] = prevRowStartIdx + downTri + 1;
+                    indices[indIdx+1] = rowStartIdx + downTri + 1;
+                    indices[indIdx+2] = prevRowStartIdx + downTri;
+                    ++downTri;
+                }
+
+                indIdx += 3;
+                upright = !upright;
+            }
+
+            prevRowStartIdx = rowStartIdx;
+            rowStartIdx += vertsInRowBottom;
+        }
+
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = indices;
