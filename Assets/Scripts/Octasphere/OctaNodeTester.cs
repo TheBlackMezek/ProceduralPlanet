@@ -10,6 +10,8 @@ public class OctaNodeTester : MonoBehaviour {
     [SerializeField]
     private int divisions;
     [SerializeField]
+    private float sphereRadius;
+    [SerializeField]
     private Vector3[] corners;
 
 
@@ -22,7 +24,7 @@ public class OctaNodeTester : MonoBehaviour {
 
     private void Start()
     {
-        node.Build(corners, divisions);
+        node.Build(corners, divisions, sphereRadius);
     }
 
 }

@@ -12,7 +12,7 @@ public class OctaNode : MonoBehaviour {
 
 
 
-	public void Build(Vector3[] corners, int divisions)
+	public void Build(Vector3[] corners, int divisions, float sphereRadius)
     {
         // rez is the number of vertices on one side of the mesh/triangle
         // the part in parentheses is called the "Mersenne Number"
@@ -25,6 +25,7 @@ public class OctaNode : MonoBehaviour {
         int nVerts = (rez * (rez + 1)) / 2;
 
         Vector3[] vertices = new Vector3[nVerts];
+        Vector3[] normals = new Vector3[nVerts];
         int[] indices = new int[nTris * 3];
 
         float dist01 = Vector3.Distance(corners[0], corners[1]);
@@ -38,6 +39,8 @@ public class OctaNode : MonoBehaviour {
         Vector3 add1 = (corners[1] - corners[0]).normalized * lenAxis01;
         Vector3 add2 = (corners[2] - corners[1]).normalized * lenAxis12;
 
+        Vector3 spherePos = transform.position;
+
         int vIdx = 0;
 
         for(int i = 0; i < rez; ++i)
@@ -45,6 +48,11 @@ public class OctaNode : MonoBehaviour {
             for(int n = 0; n <= i; ++n)
             {
                 vertices[vIdx] = corners[0] + add1 * i + add2 * n;
+                Vector3 normal = (vertices[vIdx]).normalized;
+                vertices[vIdx] = normal * sphereRadius;
+
+                normals[vIdx] = normal;
+
                 ++vIdx;
             }
         }
@@ -90,6 +98,7 @@ public class OctaNode : MonoBehaviour {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = indices;
+        mesh.normals = normals;
         meshFilter.mesh = mesh;
     }
 
