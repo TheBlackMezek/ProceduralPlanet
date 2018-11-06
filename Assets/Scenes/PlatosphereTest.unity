@@ -196,7 +196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349278443
 GameObject:
@@ -275,6 +275,106 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481926323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481926324}
+  - component: {fileID: 481926325}
+  m_Layer: 0
+  m_Name: Tetrahedron
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481926324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481926323}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1598323505}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481926325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481926323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e59f58353fc9f4eb7eb1f59b6a96eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  radius: 0.5
+  nodeSubdivisions: 0
+  nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
+  octaves: 1
+  frequency: 0
+  lacunarity: 0
+  amplitude: 0
+  persistence: 0
+  seed: 0
+--- !u!1 &1080001609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080001610}
+  - component: {fileID: 1080001611}
+  m_Layer: 0
+  m_Name: Tetrahedron (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1080001610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080001609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1598323505}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1080001611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080001609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e59f58353fc9f4eb7eb1f59b6a96eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  radius: 0.5
+  nodeSubdivisions: 0
+  nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
+  octaves: 1
+  frequency: 0
+  lacunarity: 0
+  amplitude: 0
+  persistence: 0
+  seed: 0
 --- !u!1 &1569778368
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +458,87 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1598323504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1598323505}
+  m_Layer: 0
+  m_Name: TetrahedronCube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1598323505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598323504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: -7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 481926324}
+  - {fileID: 1080001610}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1786558127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786558129}
+  - component: {fileID: 1786558128}
+  m_Layer: 0
+  m_Name: Platosphere_Large (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786558128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786558127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e59f58353fc9f4eb7eb1f59b6a96eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  radius: 30
+  nodeSubdivisions: 8
+  nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
+  octaves: 5
+  frequency: 1
+  lacunarity: 2
+  amplitude: 1
+  persistence: 0.5
+  seed: 29
+--- !u!4 &1786558129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786558127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -94, y: 183, z: -36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1880883969
 GameObject:
@@ -391,6 +571,12 @@ MonoBehaviour:
   radius: 50
   nodeSubdivisions: 8
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
+  octaves: 5
+  frequency: 1
+  lacunarity: 2
+  amplitude: 1
+  persistence: 0.5
+  seed: 70
 --- !u!4 &1880883971
 Transform:
   m_ObjectHideFlags: 0
@@ -448,6 +634,12 @@ MonoBehaviour:
   radius: 0.5
   nodeSubdivisions: 8
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
+  octaves: 5
+  frequency: 1
+  lacunarity: 2
+  amplitude: 1
+  persistence: 0.5
+  seed: 70
 --- !u!1 &2067891816
 GameObject:
   m_ObjectHideFlags: 0
