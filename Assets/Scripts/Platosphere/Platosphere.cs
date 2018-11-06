@@ -259,6 +259,7 @@ public class Platosphere : MonoBehaviour {
                             nodes[i].Initialize(radius, nodeSubdivisions, new Vector3[] { icosahedron[9], icosahedron[1], icosahedron[8] }, noiseMaker);
                             break;
                     }
+                    //nodes[i].Subdivide();
                 }
                 break;
         }

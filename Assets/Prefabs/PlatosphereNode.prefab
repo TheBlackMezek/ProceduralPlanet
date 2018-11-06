@@ -97,3 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 33961503446008940}
   meshRenderer: {fileID: 23470976694970354}
+  nodePrefab: {fileID: 1217378283824072}
