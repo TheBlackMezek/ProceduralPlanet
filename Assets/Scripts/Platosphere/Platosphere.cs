@@ -108,6 +108,7 @@ public class Platosphere : MonoBehaviour {
     private void Start()
     {
         Vector3 myPos = transform.position;
+        Quaternion myRot = transform.rotation;
 
         switch (type)
         {
@@ -118,6 +119,7 @@ public class Platosphere : MonoBehaviour {
                 {
                     GameObject node = Instantiate(nodePrefab);
                     node.transform.position = myPos;
+                    node.transform.rotation = myRot;
                     node.transform.parent = transform;
 
                     nodes[i] = node.GetComponent<PlatosphereNode>();
@@ -146,6 +148,7 @@ public class Platosphere : MonoBehaviour {
                 {
                     GameObject node = Instantiate(nodePrefab);
                     node.transform.position = myPos;
+                    node.transform.rotation = myRot;
                     node.transform.parent = transform;
 
                     nodes[i] = node.GetComponent<PlatosphereNode>();
@@ -187,6 +190,7 @@ public class Platosphere : MonoBehaviour {
                 {
                     GameObject node = Instantiate(nodePrefab);
                     node.transform.position = myPos;
+                    node.transform.rotation = myRot;
                     node.transform.parent = transform;
 
                     nodes[i] = node.GetComponent<PlatosphereNode>();
@@ -259,10 +263,13 @@ public class Platosphere : MonoBehaviour {
                             nodes[i].Initialize(radius, nodeSubdivisions, new Vector3[] { icosahedron[9], icosahedron[1], icosahedron[8] }, noiseMaker);
                             break;
                     }
-                    //nodes[i].Subdivide();
                 }
                 break;
         }
+
+        nodes[0].Subdivide();
+        //for (int i = 0; i < nodes.Length; ++i)
+            //nodes[i].Subdivide();
     }
 
 }

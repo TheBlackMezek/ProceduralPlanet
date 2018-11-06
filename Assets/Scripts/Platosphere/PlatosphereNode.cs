@@ -53,17 +53,18 @@ public class PlatosphereNode : MonoBehaviour {
         {
             GameObject child = Instantiate(nodePrefab);
             child.transform.position = transform.position;
+            child.transform.rotation = transform.rotation;
             child.transform.parent = transform;
             children[i] = child.GetComponent<PlatosphereNode>();
         }
 
-        Vector3 mid01 = corners[0] - corners[1];
-        mid01 = mid01.normalized * (mid01.magnitude / 2f);
-        Vector3 mid02 = corners[0] - corners[2];
-        mid02 = mid02.normalized * (mid02.magnitude / 2f);
-        Vector3 mid12 = corners[1] - corners[2];
-        mid12 = mid12.normalized * (mid12.magnitude / 2f);
-
+        Vector3 mid01 = corners[1] - corners[0];
+        mid01 = corners[0] + mid01.normalized * (mid01.magnitude / 2f);
+        Vector3 mid02 = corners[2] - corners[0];
+        mid02 = corners[0] + mid02.normalized * (mid02.magnitude / 2f);
+        Vector3 mid12 = corners[2] - corners[1];
+        mid12 = corners[1] + mid12.normalized * (mid12.magnitude / 2f);
+        Debug.Log(corners[0] + " " + mid01 + " " + corners[1]);
         Vector3[] corners0 = new Vector3[] { corners[0], mid01, mid02 }; //top
         Vector3[] corners1 = new Vector3[] { mid01, corners[1], mid12 }; //left
         Vector3[] corners2 = new Vector3[] { mid02, mid12, corners[2] }; //right
