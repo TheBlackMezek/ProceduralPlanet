@@ -35,6 +35,7 @@ public class Platosphere : MonoBehaviour {
     private PlatosphereType type = PlatosphereType.ICOSAHEDRON;
     [SerializeField]
     private float radius = 1f;
+    public float Radius { get { return radius; } }
     [SerializeField, Range(0, 8), Tooltip("Range due to Unity mesh vertex count limits")]
     private int nodeSubdivisions;
     [SerializeField]
