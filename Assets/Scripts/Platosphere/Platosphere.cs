@@ -54,6 +54,10 @@ public class Platosphere : MonoBehaviour {
     private float persistence = 0.5f;
     [SerializeField]
     private int seed;
+    [SerializeField]
+    private float minVal = 0f;
+    [SerializeField]
+    private float maxVal = 0.2f;
 
     private PlatosphereNode[] nodes;
     private PlanetNoise noiseMaker;
@@ -64,6 +68,12 @@ public class Platosphere : MonoBehaviour {
     {
         if (octaves < 1)
             octaves = 1;
+
+        if (minVal < -1)
+            minVal = -1;
+
+        if (maxVal < minVal)
+            maxVal = minVal;
     }
 
     private void Awake()
@@ -88,7 +98,7 @@ public class Platosphere : MonoBehaviour {
             new Vector3(-t, 0, 1)
         };
 
-        noiseMaker = new PlanetNoise(octaves, frequency, lacunarity, amplitude, persistence, seed);
+        noiseMaker = new PlanetNoise(octaves, frequency, lacunarity, amplitude, persistence, seed, minVal, maxVal);
     }
 
     private void Start()

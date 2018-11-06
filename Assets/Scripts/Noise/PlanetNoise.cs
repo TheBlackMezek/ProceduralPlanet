@@ -13,6 +13,9 @@ public class PlanetNoise {
     private float amplitude = 1f;
     private float persistence = 0.5f;
 
+    private float minVal = 1f;
+    private float maxVal = 1.2f;
+
     private int seed = 0;
 
 
@@ -22,7 +25,8 @@ public class PlanetNoise {
         noiseClass = new ValueNoise(seed);
     }
 
-    public PlanetNoise(int octaves, float frequency, float lacunarity, float amplitude, float persistence, int seed)
+    public PlanetNoise(int octaves, float frequency, float lacunarity, float amplitude, float persistence, int seed,
+        float minVal, float maxVal)
     {
         if (octaves < 1)
             octaves = 1;
@@ -35,10 +39,23 @@ public class PlanetNoise {
 
         this.seed = seed;
 
+        this.minVal = minVal;
+        this.maxVal = maxVal;
+
         noiseClass = new ValueNoise(seed);
     }
 
     public float GetValue(float x, float y, float z)
+    {
+        float ret = GetNoiseValue(x, y, z);
+
+        float lerpVal = Mathf.InverseLerp(-1f, 1f, ret);
+        ret = Mathf.Lerp(minVal, maxVal, lerpVal);
+
+        return ret;
+    }
+
+    public float GetNoiseValue(float x, float y, float z)
     {
         float localFreq = frequency;
         float localAmp = amplitude;
