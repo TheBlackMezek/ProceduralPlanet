@@ -47,7 +47,7 @@ public static class PlatosphereMeshMaker {
                 ++vIdx;
             }
         }
-
+        
         int indIdx = 0;
         int rowStartIdx = 1;
         int prevRowStartIdx = 0;
@@ -89,7 +89,8 @@ public static class PlatosphereMeshMaker {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = indices;
-        mesh.normals = normals;
+        //mesh.normals = normals;
+        mesh.RecalculateNormals();
         return mesh;
     }
 
