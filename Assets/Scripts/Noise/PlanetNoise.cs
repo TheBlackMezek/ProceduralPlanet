@@ -7,42 +7,58 @@ public class PlanetNoise {
 
     private ValueNoise noiseClass;
 
-    private int octaves = 1;
-    private float frequency = 1f;
-    private float lacunarity = 2f;
-    private float amplitude = 1f;
-    private float persistence = 0.5f;
+    [System.Serializable]
+    public struct PlanetNoiseSettings
+    {
+        public int octaves;
+        public float frequency;
+        public float lacunarity;
+        public float amplitude;
+        public float persistence;
 
-    private float minVal = 1f;
-    private float maxVal = 1.2f;
+        public float minVal;
+        public float maxVal;
 
-    private int seed = 0;
+        public PlanetColorLayer[] colorLayers;
+
+        public int seed;
+    }
+
+    [System.Serializable]
+    public struct PlanetColorLayer
+    {
+        public float heightThreshold;
+        public Color vertexColor;
+    }
+
+    private PlanetNoiseSettings settings = new PlanetNoiseSettings();
 
 
 
     public PlanetNoise()
     {
-        noiseClass = new ValueNoise(seed);
+        settings.octaves = 1;
+        settings.frequency = 1f;
+        settings.lacunarity = 2f;
+        settings.amplitude = 1f;
+        settings.persistence = 0.5f;
+
+        settings.minVal = 1f;
+        settings.maxVal = 1.2f;
+
+        settings.seed = 0;
+
+        noiseClass = new ValueNoise(settings.seed);
     }
 
-    public PlanetNoise(int octaves, float frequency, float lacunarity, float amplitude, float persistence, int seed,
-        float minVal, float maxVal)
+    public PlanetNoise(PlanetNoiseSettings settings)
     {
-        if (octaves < 1)
-            octaves = 1;
+        if (settings.octaves < 1)
+            settings.octaves = 1;
 
-        this.octaves = octaves;
-        this.frequency = frequency;
-        this.lacunarity = lacunarity;
-        this.amplitude = amplitude;
-        this.persistence = persistence;
+        this.settings = settings;
 
-        this.seed = seed;
-
-        this.minVal = minVal;
-        this.maxVal = maxVal;
-
-        noiseClass = new ValueNoise(seed);
+        noiseClass = new ValueNoise(settings.seed);
     }
 
     public float GetValue(float x, float y, float z)
@@ -50,32 +66,37 @@ public class PlanetNoise {
         float ret = GetNoiseValue(x, y, z);
 
         float lerpVal = Mathf.InverseLerp(-1f, 1f, ret);
-        ret = Mathf.Lerp(minVal, maxVal, lerpVal);
+        ret = Mathf.Lerp(settings.minVal, settings.maxVal, lerpVal);
 
         return ret;
     }
 
     public float GetNoiseValue(float x, float y, float z)
     {
-        float localFreq = frequency;
-        float localAmp = amplitude;
+        float localFreq = settings.frequency;
+        float localAmp = settings.amplitude;
 
         float maxValue = 0f;
         float ret = 0f;
 
-        for(int i = 0; i < octaves; ++i)
+        for(int i = 0; i < settings.octaves; ++i)
         {
             ret += noiseClass.GetValue(x * localFreq, y * localFreq, z * localFreq) * localAmp;
 
             maxValue += localAmp;
 
-            localFreq *= lacunarity;
-            localAmp *= persistence;
+            localFreq *= settings.lacunarity;
+            localAmp *= settings.persistence;
         }
 
         return ret / maxValue;
     }
 
     public float GetValue(Vector3 pos) { return GetValue(pos.x, pos.y, pos.z); }
+
+
+
+    public int ColorLayersLength() { return settings.colorLayers.Length; }
+    public PlanetColorLayer ColorLayer(int idx) { return settings.colorLayers[idx]; }
 
 }

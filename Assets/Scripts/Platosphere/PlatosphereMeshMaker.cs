@@ -18,6 +18,8 @@ public static class PlatosphereMeshMaker {
 
         Vector3[] vertices = new Vector3[nVerts];
         Vector3[] normals = new Vector3[nVerts];
+        Vector2[] uvs = new Vector2[nVerts];
+        Color[] vColors = new Color[nVerts];
         int[] indices = new int[nTris * 3];
 
         float dist01 = Vector3.Distance(corners[0], corners[1]);
@@ -39,10 +41,14 @@ public static class PlatosphereMeshMaker {
             {
                 vertices[vIdx] = corners[0] + add1 * i + add2 * n;
                 Vector3 normal = (vertices[vIdx]).normalized;
-                float noiseVal = noiseMaker.GetValue(normal);
-                vertices[vIdx] = normal * (sphereRadius + sphereRadius * noiseVal * 1f);
+                float noiseVal = noiseMaker.GetValue(normal) * sphereRadius;
+                vertices[vIdx] = normal * (sphereRadius + noiseVal);
 
                 normals[vIdx] = normal;
+
+                //uvs[vIdx] = Random.insideUnitCircle;
+
+                vColors[vIdx] = GetVertexColor(noiseMaker, noiseVal);
 
                 ++vIdx;
             }
@@ -89,9 +95,29 @@ public static class PlatosphereMeshMaker {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = indices;
+        mesh.colors = vColors;
+        //mesh.uv = uvs;
         //mesh.normals = normals;
         mesh.RecalculateNormals();
         return mesh;
+    }
+
+    private static Color GetVertexColor(PlanetNoise noiseMaker, float heightFromSeaLevel)
+    {
+        Color color = noiseMaker.ColorLayer(0).vertexColor;
+
+        int len = noiseMaker.ColorLayersLength();
+        for(int i = 1; i < len; ++i)
+        {
+            PlanetNoise.PlanetColorLayer layer = noiseMaker.ColorLayer(i);
+
+            if (layer.heightThreshold < heightFromSeaLevel)
+                color = layer.vertexColor;
+            else
+                break;
+        }
+
+        return color;
     }
 
 }

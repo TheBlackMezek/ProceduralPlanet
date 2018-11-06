@@ -40,24 +40,27 @@ public class Platosphere : MonoBehaviour {
     [SerializeField]
     private GameObject nodePrefab;
 
-    [Header("Noise Settings")]
+    [SerializeField]
+    private PlanetNoise.PlanetNoiseSettings noiseSettings;
 
-    [SerializeField]
-    private int octaves;
-    [SerializeField]
-    private float frequency = 1f;
-    [SerializeField]
-    private float lacunarity = 2f;
-    [SerializeField]
-    private float amplitude = 1f;
-    [SerializeField]
-    private float persistence = 0.5f;
-    [SerializeField]
-    private int seed;
-    [SerializeField]
-    private float minVal = 0f;
-    [SerializeField]
-    private float maxVal = 0.2f;
+    //[Header("Noise Settings")]
+    //
+    //[SerializeField]
+    //private int octaves;
+    //[SerializeField]
+    //private float frequency = 1f;
+    //[SerializeField]
+    //private float lacunarity = 2f;
+    //[SerializeField]
+    //private float amplitude = 1f;
+    //[SerializeField]
+    //private float persistence = 0.5f;
+    //[SerializeField]
+    //private int seed;
+    //[SerializeField]
+    //private float minVal = 0f;
+    //[SerializeField]
+    //private float maxVal = 0.2f;
 
     private PlatosphereNode[] nodes;
     private PlanetNoise noiseMaker;
@@ -66,14 +69,14 @@ public class Platosphere : MonoBehaviour {
 
     private void OnValidate()
     {
-        if (octaves < 1)
-            octaves = 1;
+        if (noiseSettings.octaves < 1)
+            noiseSettings.octaves = 1;
 
-        if (minVal < -1)
-            minVal = -1;
+        if (noiseSettings.minVal < -1)
+            noiseSettings.minVal = -1;
 
-        if (maxVal < minVal)
-            maxVal = minVal;
+        if (noiseSettings.maxVal < noiseSettings.minVal)
+            noiseSettings.maxVal = noiseSettings.minVal;
     }
 
     private void Awake()
@@ -98,7 +101,7 @@ public class Platosphere : MonoBehaviour {
             new Vector3(-t, 0, 1)
         };
 
-        noiseMaker = new PlanetNoise(octaves, frequency, lacunarity, amplitude, persistence, seed, minVal, maxVal);
+        noiseMaker = new PlanetNoise(noiseSettings);
     }
 
     private void Start()

@@ -319,14 +319,16 @@ MonoBehaviour:
   radius: 0.5
   nodeSubdivisions: 0
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
-  octaves: 1
-  frequency: 1
-  lacunarity: 1
-  amplitude: 1
-  persistence: 1
-  seed: 0
-  minVal: 1
-  maxVal: 2
+  noiseSettings:
+    octaves: 1
+    frequency: 0
+    lacunarity: 0
+    amplitude: 0
+    persistence: 0
+    minVal: 0
+    maxVal: 0
+    colorLayers: []
+    seed: 0
 --- !u!1 &1569778368
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1786558128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,14 +474,16 @@ MonoBehaviour:
   radius: 50
   nodeSubdivisions: 8
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
-  octaves: 7
-  frequency: 1
-  lacunarity: 2
-  amplitude: 1
-  persistence: 0.5
-  seed: 29
-  minVal: -1
-  maxVal: 1
+  noiseSettings:
+    octaves: 7
+    frequency: 2
+    lacunarity: 2
+    amplitude: 1
+    persistence: 0.5
+    minVal: -1
+    maxVal: 1
+    colorLayers: []
+    seed: 0
 --- !u!4 &1786558129
 Transform:
   m_ObjectHideFlags: 0
@@ -502,6 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880883971}
   - component: {fileID: 1880883970}
+  - component: {fileID: 1880883972}
   m_Layer: 0
   m_Name: Platosphere_Large
   m_TagString: Untagged
@@ -524,14 +529,22 @@ MonoBehaviour:
   radius: 50
   nodeSubdivisions: 8
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
-  octaves: 5
-  frequency: 4
-  lacunarity: 2
-  amplitude: 1
-  persistence: 0.5
-  seed: 70
-  minVal: 0
-  maxVal: 0.05
+  noiseSettings:
+    octaves: 5
+    frequency: 4
+    lacunarity: 2
+    amplitude: 1
+    persistence: 0.5
+    minVal: 0
+    maxVal: 0.1
+    colorLayers:
+    - heightThreshold: 0
+      vertexColor: {r: 0.3301887, g: 0.18627115, b: 0, a: 0}
+    - heightThreshold: 2.1
+      vertexColor: {r: 0.6226415, g: 0.3872573, b: 0.16153437, a: 0}
+    - heightThreshold: 2.5
+      vertexColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
+    seed: 0
 --- !u!4 &1880883971
 Transform:
   m_ObjectHideFlags: 0
@@ -545,6 +558,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880883972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1880883969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffcb5824eb103e408cdbc24a3f4b23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: {x: 0, y: 1, z: 0}
 --- !u!1 &2063646940
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,14 +614,22 @@ MonoBehaviour:
   radius: 0.5
   nodeSubdivisions: 8
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
-  octaves: 5
-  frequency: 4
-  lacunarity: 2
-  amplitude: 1
-  persistence: 0.5
-  seed: 70
-  minVal: 0
-  maxVal: 0.05
+  noiseSettings:
+    octaves: 5
+    frequency: 4
+    lacunarity: 2
+    amplitude: 1
+    persistence: 0.5
+    minVal: 0
+    maxVal: 0.2
+    colorLayers:
+    - heightThreshold: 0
+      vertexColor: {r: 0.3301887, g: 0.18627115, b: 0, a: 0}
+    - heightThreshold: 0.04
+      vertexColor: {r: 0.6226415, g: 0.3872573, b: 0.16153437, a: 0}
+    - heightThreshold: 0.05
+      vertexColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
+    seed: 0
 --- !u!1 &2067891816
 GameObject:
   m_ObjectHideFlags: 0
