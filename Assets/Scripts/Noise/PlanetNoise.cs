@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CoherentNoise.Generation;
+using Unity.Entities;
 
 public class PlanetNoise {
 
@@ -43,7 +44,6 @@ public class PlanetNoise {
         settings.persistence = 0.5f;
 
         settings.seed = 0;
-
         noiseClass = new ValueNoise(settings.seed);
     }
 
@@ -53,7 +53,7 @@ public class PlanetNoise {
             settings.octaves = 1;
 
         this.settings = settings;
-
+        
         noiseClass = new ValueNoise(settings.seed);
     }
 
