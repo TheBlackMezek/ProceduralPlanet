@@ -75,12 +75,6 @@ public class Platosphere : MonoBehaviour {
     {
         if (noiseSettings.octaves < 1)
             noiseSettings.octaves = 1;
-
-        if (noiseSettings.minVal < -1)
-            noiseSettings.minVal = -1;
-
-        if (noiseSettings.maxVal < noiseSettings.minVal)
-            noiseSettings.maxVal = noiseSettings.minVal;
     }
 
     private void Awake()

@@ -15,9 +15,8 @@ public class PlanetNoise {
         public float lacunarity;
         public float amplitude;
         public float persistence;
-
-        public float minVal;
-        public float maxVal;
+        
+        public AnimationCurve heightCurve;
 
         public PlanetColorLayer[] colorLayers;
 
@@ -43,9 +42,6 @@ public class PlanetNoise {
         settings.amplitude = 1f;
         settings.persistence = 0.5f;
 
-        settings.minVal = 1f;
-        settings.maxVal = 1.2f;
-
         settings.seed = 0;
 
         noiseClass = new ValueNoise(settings.seed);
@@ -64,10 +60,8 @@ public class PlanetNoise {
     public float GetValue(float x, float y, float z, int level = 0)
     {
         float ret = GetNoiseValue(x, y, z, level);
-
-        float lerpVal = Mathf.InverseLerp(-1f, 1f, ret);
-        ret = Mathf.Lerp(settings.minVal, settings.maxVal, lerpVal);
-
+        ret = settings.heightCurve.Evaluate(ret);
+        
         return ret;
     }
 
