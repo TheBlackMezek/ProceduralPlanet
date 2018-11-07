@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e57ca9d7712ace4298e60305f347abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentDistToSubdivideAt: 90
   meshFilter: {fileID: 33961503446008940}
   meshRenderer: {fileID: 23470976694970354}
-  nodePrefab: {fileID: 1217378283824072}
+  parentSphere: {fileID: 0}

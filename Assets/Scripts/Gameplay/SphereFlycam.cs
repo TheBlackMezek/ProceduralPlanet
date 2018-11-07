@@ -25,11 +25,11 @@ public class SphereFlycam : MonoBehaviour {
 
     private void Start()
     {
-        radialDistance = parent.Radius + parent.Radius * 0.1f;
+        //radialDistance = parent.Radius + parent.Radius * 0.1f;
         transform.parent = parent.transform;
-        SetPosOnSphere();
-        transform.LookAt(parent.transform);
-        transform.localEulerAngles += Vector3.right * -90f;
+        //SetPosOnSphere();
+        //transform.LookAt(parent.transform);
+        //transform.localEulerAngles += Vector3.right * -90f;
 
         Cursor.lockState = CursorLockMode.Locked;
     }

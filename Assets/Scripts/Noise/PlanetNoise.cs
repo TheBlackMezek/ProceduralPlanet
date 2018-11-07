@@ -61,9 +61,9 @@ public class PlanetNoise {
         noiseClass = new ValueNoise(settings.seed);
     }
 
-    public float GetValue(float x, float y, float z)
+    public float GetValue(float x, float y, float z, int level = 0)
     {
-        float ret = GetNoiseValue(x, y, z);
+        float ret = GetNoiseValue(x, y, z, level);
 
         float lerpVal = Mathf.InverseLerp(-1f, 1f, ret);
         ret = Mathf.Lerp(settings.minVal, settings.maxVal, lerpVal);
@@ -71,7 +71,7 @@ public class PlanetNoise {
         return ret;
     }
 
-    public float GetNoiseValue(float x, float y, float z)
+    public float GetNoiseValue(float x, float y, float z, int level = 0)
     {
         float localFreq = settings.frequency;
         float localAmp = settings.amplitude;
@@ -79,7 +79,7 @@ public class PlanetNoise {
         float maxValue = 0f;
         float ret = 0f;
 
-        for(int i = 0; i < settings.octaves; ++i)
+        for(int i = 0; i < settings.octaves + level * 1; ++i)
         {
             ret += noiseClass.GetValue(x * localFreq, y * localFreq, z * localFreq) * localAmp;
 
@@ -92,7 +92,7 @@ public class PlanetNoise {
         return ret / maxValue;
     }
 
-    public float GetValue(Vector3 pos) { return GetValue(pos.x, pos.y, pos.z); }
+    public float GetValue(Vector3 pos, int level = 0) { return GetValue(pos.x, pos.y, pos.z, level); }
 
 
 

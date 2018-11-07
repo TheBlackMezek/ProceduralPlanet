@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlatosphereMeshMaker {
 
-	public static Mesh BuildMesh(Vector3[] corners, int divisions, float sphereRadius, PlanetNoise noiseMaker)
+	public static Mesh BuildMesh(Vector3[] corners, int divisions, float sphereRadius, PlanetNoise noiseMaker, int nodeLevel)
     {
         // rez is the number of vertices on one side of the mesh/triangle
         // the part in parentheses is called the "Mersenne Number"
@@ -41,7 +41,7 @@ public static class PlatosphereMeshMaker {
             {
                 vertices[vIdx] = corners[0] + add1 * i + add2 * n;
                 Vector3 normal = (vertices[vIdx]).normalized;
-                float noiseVal = noiseMaker.GetValue(normal) * sphereRadius;
+                float noiseVal = noiseMaker.GetValue(normal, nodeLevel);
                 vertices[vIdx] = normal * (sphereRadius + noiseVal);
 
                 normals[vIdx] = normal;
