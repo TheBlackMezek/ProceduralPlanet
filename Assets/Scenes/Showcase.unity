@@ -144,6 +144,7 @@ MonoBehaviour:
   type: 2
   radius: 2
   nodeSubdivisions: 8
+  maxNodeLevels: 0
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
   noiseSettings:
     octaves: 5
@@ -410,13 +411,14 @@ MonoBehaviour:
   type: 2
   radius: 50
   nodeSubdivisions: 8
+  maxNodeLevels: 4
   nodePrefab: {fileID: 1217378283824072, guid: 5565f460d3ec97c4eb56eb6823b4cdb9, type: 2}
   noiseSettings:
     octaves: 6
     frequency: 4
     lacunarity: 2
     amplitude: 1
-    persistence: 0.7
+    persistence: 0.5
     heightCurve:
       serializedVersion: 2
       m_Curve:
@@ -584,7 +586,7 @@ Prefab:
     - target: {fileID: 114430897471675364, guid: 8b8d3b99c4c187741b7767dbc807c102,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b8d3b99c4c187741b7767dbc807c102, type: 2}

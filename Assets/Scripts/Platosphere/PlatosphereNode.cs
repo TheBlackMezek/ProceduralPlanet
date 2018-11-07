@@ -40,38 +40,42 @@ public class PlatosphereNode : MonoBehaviour {
         this.corners = corners;
         this.noiseMaker = noiseMaker;
         this.parentSphere = parentSphere;
+        this.level = level;
 
         Build();
     }
 
     public void NodeUpdate()
     {
-        bool inSubdivideRange = false;
-        Vector3 myPos = transform.position;
-
-        Vector3 corner0Pos = corners[0] * sphereRadius;
-        Vector3 corner1Pos = corners[1] * sphereRadius;
-        
-        float distToSubdivide = Vector3.Distance(corner0Pos, corner1Pos) * (percentDistToSubdivideAt / 100f);
-
-        Vector3 centerPoint = transform.TransformPoint(((corners[0] + corners[1] + corners[2]) / 3f) * sphereRadius);
-        float dist = Vector3.Distance(parentSphere.Player.position, centerPoint);
-
-        if (dist < distToSubdivide)
+        if(level < parentSphere.MaxNodeLevels)
         {
-            inSubdivideRange = true;
+            bool inSubdivideRange = false;
+            Vector3 myPos = transform.position;
 
-            if (children == null)
-                Subdivide();
-        }
+            Vector3 corner0Pos = corners[0] * sphereRadius;
+            Vector3 corner1Pos = corners[1] * sphereRadius;
 
-        if (!inSubdivideRange && children != null)
-            Recombine();
+            float distToSubdivide = Vector3.Distance(corner0Pos, corner1Pos) * (percentDistToSubdivideAt / 100f);
 
-        if(children != null)
-        {
-            for (int i = 0; i < 4; ++i)
-                children[i].NodeUpdate();
+            Vector3 centerPoint = transform.TransformPoint(((corners[0] + corners[1] + corners[2]) / 3f) * sphereRadius);
+            float dist = Vector3.Distance(parentSphere.Player.position, centerPoint);
+
+            if (dist < distToSubdivide)
+            {
+                inSubdivideRange = true;
+
+                if (children == null)
+                    Subdivide();
+            }
+
+            if (!inSubdivideRange && children != null)
+                Recombine();
+
+            if (children != null)
+            {
+                for (int i = 0; i < 4; ++i)
+                    children[i].NodeUpdate();
+            }
         }
     }
 

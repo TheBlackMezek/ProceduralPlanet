@@ -39,6 +39,9 @@ public class Platosphere : MonoBehaviour {
     [SerializeField, Range(0, 8), Tooltip("Range due to Unity mesh vertex count limits")]
     private int nodeSubdivisions;
     [SerializeField]
+    private int maxNodeLevels;
+    public int MaxNodeLevels { get { return maxNodeLevels; } }
+    [SerializeField]
     private GameObject nodePrefab;
     public GameObject NodePrefab { get { return nodePrefab; } }
     [SerializeField]
